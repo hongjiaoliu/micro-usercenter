@@ -4,7 +4,7 @@
 + micro-usercenter-service-api：本项目feignClient[声明时客户端]
 + micro-usercenter-web-api：本项目Web服务[提供给前端团队API]
 
-### 请求地址说明
+### service层 请求地址说明
 
 1. 【查询】
     + 地址：http://10.0.40.209/usercenter-srv/user/1 
@@ -35,4 +35,4 @@
                 "email": "15622365488@163.com"
             }
     ```   
-    
+### API 层 请求地址说明, 把service层的请求地址中的usercenter-srv 改为 usercenter-api即可    

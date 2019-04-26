@@ -191,7 +191,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.4" level="project" />
     <orderEntry type="module" module-name="micro-usercenter-entity" />
-    <orderEntry type="library" name="Maven: com.microservice.demo:micro-base-entity:0.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.47" level="project" />
+    <orderEntry type="library" name="Maven: com.microservice.demo:micro-base-entity:0.0.1" level="project" />
   </component>
 </module>
