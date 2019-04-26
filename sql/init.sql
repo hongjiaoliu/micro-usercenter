@@ -1,0 +1,14 @@
+CREATE DATABASE micro DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) DEFAULT NULL,
+  `mobile` varchar(32) DEFAULT NULL,
+  `email` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `user` VALUES (1, '张三', '18622365488', '18622365488@163.com');
+INSERT INTO `user` VALUES (2, '李四', '15423569966', '15423569966@163.com');
+
+

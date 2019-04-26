@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.microservice.demo.usercenter.service.mapper.UserMapper">
+
+    <select id="findUserByID" resultType="com.microservice.demo.usercenter.entity.User">
+        select * from user u where u.id = #{id}
+    </select>
+
+    <insert id="addOneUser" parameterType="com.microservice.demo.usercenter.entity.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="u.name != null">name,</if>
+            <if test="u.mobile != null">mobile,</if>
+            <if test="u.email != null">email,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="u.name != null">#{u.name},</if>
+            <if test="u.mobile != null">#{u.mobile},</if>
+            <if test="u.email != null">#{u.email},</if>
+        </trim>
+    </insert>
+
+    <delete id="deleteUserByID">
+        delete from user where id = #{id}
+    </delete>
+
+    <update id="updateUser" parameterType="com.microservice.demo.usercenter.entity.User">
+        update user
+        <set>
+            <if test="u.name != null">name = #{u.name},</if>
+            <if test="u.mobile != null">mobile = #{u.mobile},</if>
+            <if test="u.email != null">email = #{u.email},</if>
+        </set>
+        where id = #{id};
+    </update>
+</mapper>

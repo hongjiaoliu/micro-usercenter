@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.microservice.demo</groupId>
+    <artifactId>micro-usercenter</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1</version>
+    <parent>
+        <groupId>com.microservice.demo</groupId>
+        <artifactId>micro-base</artifactId>
+        <version>0.0.1</version>
+    </parent>
+    <modules>
+        <module>micro-usercenter-entity</module>
+        <module>micro-usercenter-service</module>
+        <module>micro-usercenter-service-api</module>
+        <module>micro-usercenter-web-api</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.microservice.demo</groupId>
+            <artifactId>micro-base-entity</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+    </dependencies>
+
+</project>
