@@ -1,18 +1,21 @@
 # HTTP Server
 server:
-  port: 11201   # HTTP (Tomcat) port
+  port: 10500   # HTTP (Tomcat) port
 
+#熔断器
 feign:
   hystrix:
     enabled: true
 
+
+# 默认的profile为local，其他环境通过指定启动参数使用不同的profile，比如：  
 # Spring properties
-spring: 
+spring:
   application:
-    name: usercenter-srv  # Service registers under this name
+    name: usercenter-api  # Service registers under this name
   profiles:
-    active: local 
-  cloud: 
+    active: local
+  cloud:
     config:
       name: common-2.0
       profile: ${spring.profiles.active}
@@ -20,37 +23,45 @@ spring:
         enabled: true
         serviceId: CONFIG-SRV
 
-#mybatis分页插件配置
-pagehelper:
-    helperDialect: mysql
-    reasonable: true
-    supportMethodsArguments: true
-    params: pageNum=pageNum;pageSize=pageSize;count=countSql;
-          
----    
-#本地开发环境
-spring:     
-  profiles: local
-  cloud:
-    inetutils:
-      ignored-interfaces: eth0
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
 
-#spring cloud 服务发现地址    
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 10000
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 1
+
+---
+#本地开发环境
+spring:
+  profiles: local
+
+#spring cloud 服务发现地址
 eureka:
   client:
     serviceUrl:
       defaultZone: http://127.0.0.1:11120/eureka/ # 可配置多个地址
+  healthcheck:
+      enabled: true
   instance:
-     prefer-ip-address: true   #服务之间调用时，指定IP调用
-     instance-id: ${spring.cloud.client.ip-address}:${server.port}
-     lease-expiration-duration-in-seconds: 10
-     lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true   #服务之间调用时，指定IP调用
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
 
 ---
-# 集成开发环境配置  
-spring:  
-  profiles: dev  
-        
+# 集成开发环境配置
+spring:
+  profiles: dev
+
 # Discovery Server Access
 eureka:
   client:
@@ -62,12 +73,12 @@ eureka:
     lease-expiration-duration-in-seconds: 10
     lease-renewal-interval-in-seconds: 5
 
-      
+
 ---
-# 测试环境配置  
-spring:  
-  profiles: test  
-        
+# 测试环境配置
+spring:
+  profiles: test
+
 # Discovery Server Access
 eureka:
   client:
@@ -78,13 +89,13 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
     lease-expiration-duration-in-seconds: 10
     lease-renewal-interval-in-seconds: 5
-      
-      
+
+
 ---
-# 预上线环境配置  
-spring:  
-  profiles: pre  
-        
+# 预上线环境配置
+spring:
+  profiles: pre
+
 # Discovery Server Access
 eureka:
   client:
@@ -95,21 +106,21 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
     lease-expiration-duration-in-seconds: 10
     lease-renewal-interval-in-seconds: 5
-      
-      
+
+
 ---
-# 生产环境配置  
-spring:  
-  profiles: product  
-        
+# 生产环境配置
+spring:
+  profiles: product
+
 # Discovery Server Access
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://10.80.227.165:11121/eureka/,http://10.51.30.84:11120/eureka/ # 可配置多个地址
+      defaultZone: http://10.51.30.84:11120/eureka/ # 可配置多个地址
   instance:
     prefer-ip-address: true   #服务之间调用时，指定IP调用
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
     lease-expiration-duration-in-seconds: 10
     lease-renewal-interval-in-seconds: 5
-      
+  
