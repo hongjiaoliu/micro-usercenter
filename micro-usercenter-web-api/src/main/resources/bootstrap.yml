@@ -22,6 +22,11 @@ spring:
       discovery:
         enabled: true
         serviceId: CONFIG-SRV
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
 
 hystrix:
   command:
