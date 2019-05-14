@@ -7,7 +7,10 @@
     </select>
 
     <select id="searchUsers"  resultType="com.microservice.demo.usercenter.entity.User">
-        select * from user u where u.name LIKE CONCAT('%', #{keyWords}, '%') escape '/'
+        select * from user u
+        <if test="keyWords != null">
+            where u.name LIKE CONCAT('%', #{keyWords}, '%') escape '/'
+        </if>
     </select>
 
     <insert id="addOneUser" parameterType="com.microservice.demo.usercenter.entity.User">

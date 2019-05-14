@@ -34,5 +34,26 @@
                 "mobile": "15622365488",
                 "email": "15622365488@163.com"
             }
-    ```   
+    ```
+5. 【分页查询】
+    + 地址：http://10.0.40.209:11201/user?keyWord=&pageSize=1&page=2
+    + Get请求
+    + 返回样例:
+    ```
+       {
+           "status": true,
+           "result": [
+               {
+                   "id": 2,
+                   "name": "王五",
+                   "mobile": "13622365488",
+                   "email": "13622365488@163.com"
+               }
+           ],
+           "errcode": null,
+           "errmsg": null,
+           "totalCounts": 6
+       }
+        
+    ```       
 ### API 层 请求地址说明, 把service层的请求地址中的usercenter-srv 改为 usercenter-api即可    
