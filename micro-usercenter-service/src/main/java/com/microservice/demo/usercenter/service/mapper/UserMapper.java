@@ -1,8 +1,11 @@
 package com.microservice.demo.usercenter.service.mapper;
 
+import com.github.pagehelper.PageRowBounds;
 import com.microservice.demo.usercenter.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * 用户表数据操作接口
@@ -18,6 +21,14 @@ public interface UserMapper {
 	 * @return
 	 */
 	User findUserByID(@Param("id") Integer userID);
+
+	/**
+	 * 通过关键字分页查询用户
+	 * @param keyWords
+	 * @param pageRowBounds
+	 * @return
+	 */
+	List<User> searchUsers(@Param("keyWords") String keyWords, PageRowBounds pageRowBounds);
 
 	/**
 	 * 添加一个用户

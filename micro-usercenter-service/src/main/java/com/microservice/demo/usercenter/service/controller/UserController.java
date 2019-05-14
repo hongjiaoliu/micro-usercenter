@@ -37,6 +37,13 @@ public class UserController {
 		return new ResultSuccess(user);
 	}
 
+	@GetMapping("/{keyWord}")
+	public ResultBean searchUserLists(@PathVariable("keyWord") String keyWord,
+			                          @RequestParam(value = "pageSize", defaultValue = "20")Integer pageSize,
+									  @RequestParam(value = "page", defaultValue = "1")Integer page){
+		return userService.searchUserLists(keyWord, pageSize, page);
+	}
+
 	/**
 	*  删除一个用户
 	* @param  userID : 用户ID

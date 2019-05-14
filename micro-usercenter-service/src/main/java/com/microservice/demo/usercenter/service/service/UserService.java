@@ -1,5 +1,6 @@
 package com.microservice.demo.usercenter.service.service;
 
+import com.microservice.base.entity.common.ResultBean;
 import com.microservice.demo.usercenter.entity.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,6 +17,15 @@ public interface UserService {
 	 * @return
 	 */
 	User findUserByID(@Param("id") Integer userID);
+
+	/**
+	 * 通过关键字搜索用户列表（分页查询）
+	 * @param keyWord
+	 * @param pageSize
+	 * @param page
+	 * @return
+	 */
+	ResultBean searchUserLists(String keyWord, Integer pageSize, Integer page);
 
 	/**
 	 * 添加一个用户
